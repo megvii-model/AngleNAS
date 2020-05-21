@@ -26,7 +26,7 @@ For the form x(y), x means models searched without human intervention, y means t
 
 ## Usage
 ### Step 1: Setup Dataset
-We have splitted 5000 images from `ImageNet Train Dataset` as the validation set for search. The remainings are used for supernet training.
+We have splitted 50000 images from `ImageNet Train Dataset` as the validation set for search. The remainings are used for supernet training.
 
 Run `utils/get_flops_lookup_table.sh` to generate flops lookup table which is required in Uniform Sampling.
 
