@@ -42,8 +42,8 @@ parser.add_argument('--arch', type=str, default='PDARTS_ABS', help='which archit
 parser.add_argument('--grad_clip', type=float, default=5., help='gradient clipping')
 parser.add_argument('--label_smooth', type=float, default=0.1, help='label smoothing')
 parser.add_argument('--lr_scheduler', type=str, default='linear', help='lr scheduler, linear or cosine')
-parser.add_argument('--train_dir', type=str, default='data/train', help='path to training dataset')
-parser.add_argument('--test_dir', type=str, default='data/test', help='path to test dataset')
+parser.add_argument('--train_dir', type=str, default='../../data/train', help='path to training dataset')
+parser.add_argument('--test_dir', type=str, default='../../data/test', help='path to test dataset')
 parser.add_argument('--eval', default=False, action='store_true')
 parser.add_argument('--eval-resume', type=str, default='./checkpoint.pth.tar', help='path for eval model')
 
