@@ -61,9 +61,9 @@ class TestServer(MessageQueueServerBase):
         self.criterion = self.criterion.cuda()
 
         # Prepare data
-        train_loader = get_train_dataloader(None, batchsize, 0, 100000)
+        train_loader = get_train_dataloader(train_dir, batchsize, 0, 100000)
         self.train_dataprovider = DataIterator(train_loader)
-        val_loader = get_val_dataloader(None)
+        val_loader = get_val_dataloader(val_dir)
         self.val_dataprovider = DataIterator(val_loader)
 
     def eval(self, cand):
