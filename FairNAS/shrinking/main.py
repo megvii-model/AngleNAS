@@ -38,7 +38,7 @@ parser.add_argument('--classes', type=int, default=1000, help='number of classes
 parser.add_argument('--seed', type=int, default=5, help='random seed')
 parser.add_argument('--grad_clip', type=float, default=5, help='gradient clipping')
 parser.add_argument('--label_smooth', type=float, default=0.1, help='label smoothing')
-parser.add_argument('--train_dir', type=str, default='data/train', help='path to training dataset')
+parser.add_argument('--train_dir', type=str, default='../../data/train', help='path to training dataset')
 parser.add_argument('--operations_path', type=str, default='shrunk_search_space.pt', help='shrunk search space')
 args = parser.parse_args()
 

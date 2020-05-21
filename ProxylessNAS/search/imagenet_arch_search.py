@@ -106,8 +106,8 @@ parser.add_argument('--rl_update_steps_per_epoch', type=int, default=300)
 parser.add_argument('--rl_baseline_decay_weight', type=float, default=0.99)
 parser.add_argument('--rl_tradeoff_ratio', type=float, default=0.1)
 parser.add_argument('--operations_path', type=str, default='../../SPOS/shrinking/shrunk_search_space.p', help='shrunk search space')
-parser.add_argument('--train_dir', type=str, default='data/train', help='path to training dataset')
-parser.add_argument('--test_dir', type=str, default='data/test', help='path to test dataset')
+parser.add_argument('--train_dir', type=str, default='../../data/train', help='path to training dataset')
+parser.add_argument('--test_dir', type=str, default='../../data/test', help='path to test dataset')
 
 if __name__ == '__main__':
     args = parser.parse_args()
