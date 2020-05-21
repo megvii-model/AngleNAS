@@ -59,7 +59,7 @@ python3 train_search.py --save PDARTS_ABS --tmp_data_dir $YOUR_DATA_PATH \
 
 #### ProxylessNAS:
 ```
-cd search
+cd searching
 python3 imagenet_arch_search.py --path ABS 
                                 --target_hardware flops \
                                 --operations_path $YOUR_SHRUNK_SEARCH_SPACE \
@@ -81,7 +81,7 @@ sudo rabbitmqctl set_permissions -p / test '.*' '.*' '.*'
 ##### train and search
 Before search, please modify host and username in the config file search/config.py.
 ```
-cd search
+cd searching
 python3 -m torch.distributed.launch --nproc_per_node=8 main.py --operations_path \
                             --train_dir $YOUR_TRAINDATASET_PATH --test_dir $YOUR_TESTDATASET_PATH
 $YOUR_SHRUNK_SEARCH_SPACE
@@ -90,7 +90,7 @@ $YOUR_SHRUNK_SEARCH_SPACE
 ##### start new tmuxs for model evaluation (concurrent with last Step)
 ```
 tmux new -s server_x
-cd search
+cd searching
 python3 test_server.py
 ```
 You can start more than one test_server.py to speed up, if you have enough **GPUs** and **memory** researces.
@@ -102,7 +102,7 @@ Finally, train and evaluate the searched architectures with the following comman
 Train:
 
 ```
-cd train
+cd training
 python3 -m torch.distributed.launch --nproc_per_node=8 train_from_scratch.py \
                             --train_dir $YOUR_TRAINDATASET_PATH --test_dir $YOUR_TESTDATASET_PATH
 ```
@@ -110,7 +110,7 @@ python3 -m torch.distributed.launch --nproc_per_node=8 train_from_scratch.py \
 Evaluate:
 
 ```
-cd train
+cd training
 python3 -m torch.distributed.launch --nproc_per_node=8 train_from_scratch.py \
                             --eval --eval-resume $YOUR_WEIGHT_PATH \
                             --train_dir $YOUR_TRAINDATASET_PATH --test_dir $YOUR_TESTDATASET_PATH
