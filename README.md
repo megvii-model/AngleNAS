@@ -79,7 +79,7 @@ sudo rabbitmqctl set_permissions -p / test '.*' '.*' '.*'
 ```
 
 ##### train and search
-Before search, please modify host and username in the config file search/config.py.
+Before search, please modify host and username in the config file searching/config.py.
 ```
 cd searching
 python3 -m torch.distributed.launch --nproc_per_node=8 main.py --operations_path \
