@@ -1,5 +1,5 @@
 # ABS
-This project provides the implementation for [Angle-based Search Space Shrinking for Neural Architecture Search](https://arxiv.org/abs/2004.13431). This project is based on [DARTS](https://github.com/quark0/darts), [PDARTS](https://github.com/chenxin061/pdarts), [ProxylessNAS](https://github.com/mit-han-lab/ProxylessNAS), [SPOS](https://github.com/megvii-model/SinglePathOneShot), [NAS-Benchmark-201](https://github.com/D-X-Y/AutoDL-Projects)
+This project provides Pytorch implementation for [Angle-based Search Space Shrinking for Neural Architecture Search](https://arxiv.org/abs/2004.13431).
 
 <!-- ![introduce image](image/pipeline.png) -->
 <img width="740" height="370" src="figure/pipeline.png"/>
@@ -115,6 +115,9 @@ python3 -m torch.distributed.launch --nproc_per_node=8 train_from_scratch.py \
                             --eval --eval-resume $YOUR_WEIGHT_PATH \
                             --train_dir $YOUR_TRAINDATASET_PATH --test_dir $YOUR_TESTDATASET_PATH
 ```
+
+## Thanks
+This implementation of ABS is based on [DARTS](https://github.com/quark0/darts), [PDARTS](https://github.com/chenxin061/pdarts), [ProxylessNAS](https://github.com/mit-han-lab/ProxylessNAS), [SPOS](https://github.com/megvii-model/SinglePathOneShot), [NAS-Benchmark-201](https://github.com/D-X-Y/AutoDL-Projects). Except to replace the search space, everything else follows their original implementation. Please ref to their reposity for more details.
 
 ## Citation
 If you find that this project helps your research, please consider citing some of the following papers:
