@@ -51,8 +51,6 @@ python3 train_search.py --data $YOUR_DATA_PATH --unrolled --save DARTS_ABS \
 ```
 cd pdarts-master
 python3 train_search.py --save PDARTS_ABS --tmp_data_dir $YOUR_DATA_PATH \
-						--add_layers 6 --add_layers 12 --dropout_rate 0.1 \
-						--dropout_rate 0.4 --dropout_rate 0.7 \
 						--operations_path $YOUR_SHRUNK_SEARCH_SPACE
 
 ```

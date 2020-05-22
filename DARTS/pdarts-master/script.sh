@@ -1,1 +1,1 @@
-python3 train_search.py --save PDARTS_ABS --dropout_rate 0.1 --dropout_rate 0.4 --dropout_rate 0.7 --tmp_data_dir '/data/cifar10/' --operations_path '../shrinking/shrunk_search_space.pt'
+python3 train_search.py --save PDARTS_ABS --tmp_data_dir '../../data/cifar10/' --operations_path '../shrinking/shrunk_search_space.pt'
