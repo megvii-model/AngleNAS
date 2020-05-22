@@ -40,7 +40,7 @@ parser.add_argument('--arch_learning_rate', type=float, default=6e-4, help='lear
 parser.add_argument('--arch_weight_decay', type=float, default=1e-3, help='weight decay for arch encoding')
 parser.add_argument('--tmp_data_dir', type=str, default='/home/huyiming/data/NAS-ECCV/NAS-Bench-102/NAS-Bench-102/cifar.python/cifar10/', help='temp data dir')
 parser.add_argument('--note', type=str, default='try', help='note for this run')
-parser.add_argument('--dropout_rate', action='append', default=[], help='dropout rate of skip connect')
+parser.add_argument('--dropout_rate', action='append', default=['0.7'], help='dropout rate of skip connect')
 parser.add_argument('--add_width', action='append', default=['0'], help='add channels')
 parser.add_argument('--add_layers', action='append', default=['12'], help='add layers')
 parser.add_argument('--cifar100', action='store_true', default=False, help='search with cifar100 dataset')
@@ -104,8 +104,12 @@ def main():
     switches = []
     operations = pickle.load(open(args.operations_path, 'rb'))
     print('operations={}'.format(operations))
-    num_to_drop, num_to_keep, add_layers = [1], [5], [12]
-
+    num_to_drop, num_to_keep, eps_no_archs = [1], [5], [10]
+    drop_rate = args.dropout_rate
+    add_layers = args.add_layers
+    add_width = args.add_width
+    logging.info('drop_rate={}, add_layers={}, add_width={}'.format(drop_rate, add_layers, add_width))
+    
     for i in range(14):
         switches.append([False for j in range(len(PRIMITIVES))])
     for i in range(14):
@@ -114,18 +118,7 @@ def main():
     switches_normal = copy.deepcopy(switches)
     switches_reduce = copy.deepcopy(switches)
     logging.info('switches={}'.format(switches_normal))
-    # To be moved to args
 
-    if len(args.add_width) == 3:
-        add_width = args.add_width
-    else:
-        add_width = [0, 0, 0]
-
-    if len(args.dropout_rate) ==3:
-        drop_rate = args.dropout_rate
-    else:
-        drop_rate = [0.0, 0.0, 0.0]
-    eps_no_archs = [10, 10, 10]
     for sp in range(len(num_to_keep)):
         model = Network(args.init_channels + int(add_width[sp]), CIFAR_CLASSES, args.layers + int(add_layers[sp]), criterion, switches_normal=switches_normal, switches_reduce=switches_reduce, p=float(drop_rate[sp]))
         model = nn.DataParallel(model)
