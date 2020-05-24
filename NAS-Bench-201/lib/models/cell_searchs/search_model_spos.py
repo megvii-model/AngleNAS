@@ -46,7 +46,6 @@ class TinyNetworkSPOS(nn.Module):
     self.arch_parameters = nn.Parameter( 1e-3*torch.randn(num_edge, len(search_space)) )
     self.mode       = 'urs'
     self.dynamic_cell = None
-    self.unshare_weights = nn.ModuleList()
     
   def set_cal_mode(self, mode, dynamic_cell=None):
     assert mode in ['urs', 'joint', 'select', 'dynamic', 'dropnode']
