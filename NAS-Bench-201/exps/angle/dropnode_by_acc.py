@@ -103,41 +103,6 @@ def load(checkpoint_path, model):
   checkpoint  = torch.load(checkpoint_path)
   model.module.load_state_dict( checkpoint['search_model'] )
 
-def recalculate_bn(net, train_queue, data_for_bn='./20000_train_data_for_bn.pkl', batchsize=512):
-    for m in net.modules():
-        if isinstance(m, torch.nn.BatchNorm2d):
-            m.running_mean = torch.zeros_like(m.running_mean)
-            m.running_var = torch.ones_like(m.running_var)
-
-    data_arr = None
-    if not os.path.exists(data_for_bn):
-        img_num = 0
-        for step, (image, target, arch_inputs, arch_targets) in enumerate(train_queue):
-            if data_arr is None:
-                data_arr = image
-            else:
-                data_arr = np.concatenate((data_arr, image), 0)
-            img_num = data_arr.shape[0]
-            if img_num > 20000:
-              break
-        data_arr = data_arr[:20000, :, :, :]
-
-        f = open(data_for_bn, 'wb')
-        pickle.dump(data_arr, f)
-        f.close()
-
-    else:
-        data_arr = pickle.load(open(data_for_bn, 'rb'))
-
-    print('compute bn ...')
-    net.train()
-    with torch.no_grad():
-        for i in range(0, data_arr.shape[0], batchsize):
-            data = data_arr[i:i+batchsize]
-            data = torch.from_numpy(data).cuda()
-            raw_logits = net(data)
-            del raw_logits, data
-
 def get_arch_acc(xloader, network, sampled_arch):
   with torch.no_grad():
     network.eval()
